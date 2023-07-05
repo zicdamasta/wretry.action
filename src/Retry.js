@@ -54,7 +54,7 @@ function retry( scriptType )
         return null;
 
         const optionsStrings = core.getInput( 'with' );
-        const optionsSecretsString = core.getMultilineInput( 'with_secrets' );
+        const optionsSecretsString = core.getInput( 'with_secrets' );
         const options = common.actionOptionsParse( optionsStrings );
         const secrets  = common.actionOptionsParse( optionsSecretsString, true );
         _.map.extend( options, secrets );
