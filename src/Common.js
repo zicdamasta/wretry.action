@@ -102,11 +102,20 @@ function actionConfigRead( actionDir )
 
 //
 
-function actionOptionsParse( src )
+function actionOptionsParse( src, isSecret )
 {
-  src = src.split( '\n' );
-
   const result = Object.create( null );
+
+  if (isSecret) {
+    for( let i = 0 ; i < src.length ; i++ )
+    {
+      const splits = _.strStructureParse({ src : src[ i ], toNumberMaybe : 0 });
+      _.map.extend( result, splits );
+    }
+    return result;
+  }
+
+  src = src.split( '\n' );
   for( let i = 0 ; i < src.length ; i++ )
   {
     const splits = _.strStructureParse({ src : src[ i ], toNumberMaybe : 0 });
@@ -293,4 +302,3 @@ const Self =
 };
 
 module.exports = Self;
-
